@@ -1,0 +1,4 @@
+*.tmp
+*.bak
+/logs/
+__pycache__/
