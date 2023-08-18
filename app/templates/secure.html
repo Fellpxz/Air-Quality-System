@@ -1,0 +1,39 @@
+  
+  <!-- -----HEADER----- -->
+  <header id="main-header">
+    <div class="container">
+      <h1>Air Quality System</h1>
+    </div>
+  </header>
+
+  <section id="display-none">
+  {% if samples %}
+  <div class="container">
+    {% for sample in samples %}
+    <form action="{% url 'edit' sample_id=sample.id %}" class="view-form" method="post">
+    {% csrf_token %}
+    <p>MP10: <input class="view-input" type="text" name="mp10" value="{{ sample.mp10 }}" readonly></p>
+    <p>MP25: <input class="view-input" type="text" name="mp25" value="{{ sample.mp25 }}" readonly></p>
+    <p>O3: <input class="view-input" type="text" name="o3" value="{{ sample.o3 }}" readonly></p>
+    <p>CO: <input class="view-input" type="text" name="co" value="{{ sample.co }}" readonly></p>
+    <p>NO2: <input class="view-input" type="text" name="no2" value="{{ sample.no2 }}" readonly></p>
+    <p>SO2: <input class="view-input" type="text" name="so2" value="{{ sample.so2 }}" readonly></p>
+    <button class="h-edit-button">Habilitar Edição</button>
+    <button class="edit-button">Editar</button>
+    <a href="{% url 'delete' sample.id %}">Delete</a>
+    </form>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <form action="{% url 'save' %}" method="post">
+    {% csrf_token %}
+    <p>MP10: <input type="text" name="mp10"></p>
+    <p>MP25: <input type="text" name="mp25"></p>
+    <p>O3: <input type="text" name="o3"></p>
+    <p>CO: <input type="text" name="co"></p>
+    <p>NO2: <input type="text" name="no2"></p>
+    <p>SO2: <input type="text" name="so2"></p>
+    <button type="submit">Salvar</button>
+  </form>
+  </section>

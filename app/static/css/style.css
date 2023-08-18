@@ -1,32 +1,196 @@
-/*---------- GERAL -----------*/
+/* Importar a fonte Montserrat do Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 *{
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-body,
-html{
-  height: 100%;
-  width: 100%;
+:root{
+  /*--- Trocando a configuração da fontsize ---*/
+  font-size: 62.5%;
+
+  /*--- Color Changer ---*/
+  --hue: 40;
+
+  /*--- Váriaveis ---*/
+  --primary-color: hsl(var(--hue), 97%, 54%);
+  --secondary-color: hsl(calc(var(--hue) + 200 ), 36%, 10%);
+  --tertiary-color: hsl(calc(var(--hue) + 206), 12%, 32%);
 }
 
+html,
 body {
-  display: flex;
-  flex-direction: column;
-  gap: 10rem;
+  width: 100%;
+  height: 100%;
 }
 
-/*---------- VIEW FORM -----------*/
-
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+body{
+  overflow: hidden;
 }
 
-.view-form{
+/*--- Loading Animation ---*/
+
+#loader{
   display: flex;
+  position: fixed;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--secondary-color);
+
+  width: 100%;
+  height: 100%;
+
+  /* Fowards mantém o estádo da animação, ou seja quando ela desaparecer o display none vai continuar aplicado!*/
+  animation: fadeout 3.8s ease forwards;
+}
+
+
+#loader .container {
+  display: flex;
+
+}
+
+#loader .loading {
+  /* Fowards mantém o estádo da animação, ou seja quando ela desaparecer o display none vai continuar aplicado!*/
+  animation: fadeout 3.5s ease forwards;
+}
+
+@keyframes fadeout {
+  0%{
+    opacity: 100%;
+  }
+  25%{
+    opacity: 100%;
+  }
+  50%{
+    opacity: 100%;
+  }
+  75%{
+    opacity: 100%;
+  }
+  100%{
+    opacity: 0%;
+    display: none;
+  }
+}
+
+#loader .text {
+  color: var(--primary-color);
+  display: inline-block;
+  margin-left: .5rem;
+  font-size: 1.6rem;
+}
+
+#loader .bounceball {
+  position: relative;
+  display: inline-block;
+  height: 3.7rem;
+  width: 1.5rem;
+}
+#loader .bounceball:before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  transform-origin: 50%;
+  animation: bounce 500ms alternate infinite ease;
+}
+
+@keyframes bounce {
+  0% {
+    top: 3rem;
+    height: .5rem;
+    border-radius: 60px 60px 20px 20px;
+    transform: scaleX(2);
+  }
+  35% {
+    height: 1.5rem;
+    border-radius: 50%;
+    transform: scaleX(1);
+  }
+  100% {
+    top: 0;
+  }
+}
+
+/*--- Header ---*/
+
+
+#main{
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+
+#main .container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#main-header{
+  height: 100%;
+  width: 20%;
+  background-color: var(--secondary-color);
+}
+
+#main-header .title{
+  margin-top: 8rem;
+  margin-left: 1rem;
+}
+
+#main-header .top{
+  display: flex;
+  position: fixed;
   gap: .5rem;
+  width: 100%;
+  height: 5%;
+
+  align-items: center;
+
+  padding: 2rem 1rem;
+
+  z-index: 1;
+  background-color: var(--tertiary-color);
+
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+#main-header .top h1{
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#main-header .top i{
+  font-size: 2rem;
+}
+
+
+#content{
+  height: 100%;
+  width: 80%;
+  background-color: white;
+}
+
+#content .top{
+  position: fixed;
+  width: 100%;
+  height: 5%;
+  z-index: 1;
+
+  background-color: var(--tertiary-color);
 }

@@ -4,40 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- -----Load Static----- -->
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- -----Fonts----- -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  {% if samples %}
-  <div class="container">
-    {% for sample in samples %}
-    <form action="{% url 'edit' sample_id=sample.id %}" class="view-form" method="post">
-    {% csrf_token %}
-    <p>MP10: <input class="view-input" type="text" name="mp10" value="{{ sample.mp10 }}" readonly></p>
-    <p>MP25: <input class="view-input" type="text" name="mp25" value="{{ sample.mp25 }}" readonly></p>
-    <p>O3: <input class="view-input" type="text" name="o3" value="{{ sample.o3 }}" readonly></p>
-    <p>CO: <input class="view-input" type="text" name="co" value="{{ sample.co }}" readonly></p>
-    <p>NO2: <input class="view-input" type="text" name="no2" value="{{ sample.no2 }}" readonly></p>
-    <p>SO2: <input class="view-input" type="text" name="so2" value="{{ sample.so2 }}" readonly></p>
-    <button class="h-edit-button">Habilitar Edição</button>
-    <button class="edit-button">Editar</button>
-    <a href="{% url 'delete' sample.id %}">Delete</a>
-    </form>
-    {% endfor %}
-  </div>
-  {% endif %}
+  <!-- ----Animation---- -->
+  <section id="loader">
+    <div class="container">
+      <div class="loading">
+        <div class="bounceball"></div>
+        <div class="text">LOADING</div>
+      </div>
+    </div>
+  </section>
 
-  <form action="{% url 'save' %}" method="post">
-    {% csrf_token %}
-    <p>MP10: <input type="text" name="mp10"></p>
-    <p>MP25: <input type="text" name="mp25"></p>
-    <p>O3: <input type="text" name="o3"></p>
-    <p>CO: <input type="text" name="co"></p>
-    <p>NO2: <input type="text" name="no2"></p>
-    <p>SO2: <input type="text" name="so2"></p>
-    <button type="submit">Salvar</button>
-  </form>
+  <!-- ----Main Section---- -->
+  <section id="main">
 
+    <div class="container">
+      <!-- ----Header---- -->
+      <header id="main-header">
+        <div class="top">
+          <h1>Air Quality</h1>
+          <i class="fa-solid fa-wind"></i>
+        </div>
+        
+        <h1 class="title">Sample System</h1>
+      </header>
+      <!-- ----Content---- -->
+      <section id="content">
+        <div class="top">
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <script src="https://kit.fontawesome.com/e2963f2415.js" crossorigin="anonymous"></script>
   <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
